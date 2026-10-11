@@ -1,8 +1,13 @@
 {
   "team": "Yasir Uysal",
-  "members": [{ "name": "Yasir Uysal", "email": "muysal21@ku.edu.tr" }],
+  "members": [
+    {
+      "name": "Yasir Uysal",
+      "email": "muysal21@ku.edu.tr"
+    }
+  ],
   "repo": "https://github.com/yasiruysal/freya-builder",
-  "commit": "bf2b202",
+  "commit": "d867a76",
   "run_command": "python3 builder-agentic/build.py {case_folder} {mock_url} --runner cli --minutes 70",
   "workflow": "submission/final.workflow.json",
   "trace": "traces/final.trace.jsonl",
