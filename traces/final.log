@@ -1,0 +1,83 @@
+case folder FreyaBank-Final: service contract NOT FOUND (empty paths); mock https://freya-final-mock.yasir-freya.workers.dev
+features: {'raw': True, 'multi_product': False, 'third_party': True, 'identity_fields': [], 'language': 'Turkish'}
+session reconcile (claude-opus-5-5): reconcile the raw brief into RECONCILED.md (rules with sources, overrides); builder result: 10 turns, 178 s, cost $1.66 | model calls: 16
+reconcile: RECONCILED.md written
+reconcile: machine-readable contract written from the documents (8 paths); the contract check uses it
+session cand-1 (claude-opus-5-5): build candidate workflow, skills core+spec-first; builder result: 19 turns, 218 s, cost $1.48 | model calls: 36
+session cand-2 (claude-opus-5-5): build candidate workflow, skills core+spec-first; builder result: 11 turns, 117 s, cost $0.91 | model calls: 21
+session cand-3 (claude-opus-5-5): build candidate workflow, skills core+spec-first+primitives; builder result: 16 turns, 206 s, cost $1.45 | model calls: 30
+session tests (claude-opus-5-5): write test customers from the brief (adversarial); builder result: 8 turns, 73 s, cost $0.64 | model calls: 15
+build: strategies [['core', 'spec-first'], ['core', 'spec-first'], ['core', 'spec-first', 'primitives']]; candidates written: [True, True, True]
+style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-13', 'T-03', 'S-pieces-T-02']
+select cand-1: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 42 nodes
+select cand-2: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 12 nodes
+select cand-3: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 48 nodes
+kept cand-2
+session fix-1 (claude-opus-5-5): fix round 1: fix the largest cluster of 6 failing tests; builder result: 13 turns, 65 s, cost $0.71 | model calls: 26
+fix round 1: fixed [] of ['T-01', 'T-13', 'T-04', 'T-03', 'T-02', 'S-pieces-T-02']; regressions [] -> reverted (nothing fixed)
+fix: stop (failed 6, round 1, 44.3 min left)
+contract: 0 errors, 0 warnings
+workflow: 12 nodes, tools used: cards_balance, cards_list, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 12 nodes, tools cards_balance, cards_list, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+done: final-b, kept builder-agentic/work/final-b/cand-2/out/agent.workflow.json
+trace: traces/final-b_20261011-212802.agentic.log
+case folder FreyaBank-Final: service contract NOT FOUND (empty paths); mock https://freya-final-mock.yasir-freya.workers.dev
+resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+test runtime: observed; actual ledger keys ['attempts', 'callbacks', 'calls', 'case', 'contact_lookups', 'customerNo', 'customer_id', 'identity', 'notes', 'now', 'ok', 'outcome', 'promises', 'reason', 'statement_pdf_sends', 'statement_week_changes', 'statement_week_previews', 'transfers']
+TEST ERRORS: 16 invalid generated testcases; validating the harness before scoring agents
+  test T-01: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-02: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-03: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-04: expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+  test T-05: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-06: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check; expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+  test T-07: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-08: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-09: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check; expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+  test T-10: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-11: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-12: expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+  test T-13: expected.transfers: positive transfers are not recorded by any exposed transfer API/tool; check the actual semantic exit and conversation instead
+  test T-14: expected.transfers: positive transfers are not recorded by any exposed transfer API/tool; check the actual semantic exit and conversation instead
+  test T-17: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+  test T-18: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+session tests-repair (claude-opus-5-5): repair generated test expectations against the actual ledger and raw sources; builder result: 5 turns, 21 s, cost $0.41 | model calls: 9
+tests-repair: 18 valid, 0 still invalid (originally 16 invalid)
+validate_tests: 18 valid tests; raw input preserved at tests/out/tests.raw.json; details in TEST_ERRORS.json
+style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-03', 'T-05', 'S-pieces-T-02']
+case folder FreyaBank-Final: service contract NOT FOUND (empty paths); mock https://freya-final-mock.yasir-freya.workers.dev
+resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+TEST ERRORS: 4 invalid generated testcases; validating the harness before scoring agents
+  test T-02: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+  test T-04: expected.statement_pdf_sends[0]: empty object record drops every positive field constraint
+  test T-05: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+  test T-08: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+tests-repair-1: 14 valid, 4 still invalid (originally 4 invalid)
+session tests-repair-2 (claude-opus-5-5): repair generated test expectations (attempt 2) against the actual ledger and raw sources; builder result: 7 turns, 34 s, cost $0.48 | model calls: 13
+tests-repair-2: 18 valid, 0 still invalid (originally 4 invalid)
+validate_tests: 18 valid tests; raw input preserved at tests/out/tests.raw.json; details in TEST_ERRORS.json
+style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-03', 'T-05', 'S-pieces-T-02']
+select cand-1: 2/6 passed (on 6 tests every candidate completed; 2/6 of its own), 1 style failures, 0 contract errors, 42 nodes
+select cand-2: 1/6 passed (on 6 tests every candidate completed; 1/6 of its own), 1 style failures, 0 contract errors, 12 nodes
+select cand-3: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 48 nodes
+kept cand-1
+session fix-1 (claude-opus-5-5): fix round 1: fix the largest cluster of 4 failing tests; builder result: 10 turns, 40 s, cost $0.54 | model calls: 19
+fix round 1: fixed ['T-04', 'T-03'] of ['T-04', 'T-03', 'T-05', 'S-pieces-T-02']; regressions ['T-02'] -> reverted (veto)
+fix: stop (failed 4, round 1, 15.5 min left)
+contract: 0 errors, 0 warnings
+workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+done: final-b, kept builder-agentic/work/final-b/cand-1/out/agent.workflow.json
+trace: traces/final-b_20261011-215649.agentic.log
+case folder FreyaBank-Final: service contract NOT FOUND (empty paths); mock https://freya-final-mock.yasir-freya.workers.dev
+resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+external feedback (native Freya grader): 0/2 passed; failed ['T-01', 'T-02']; source /Users/yasir/Documents/Claude/Freya-agentic/results/final-b-freya-smoke.json; archived external-feedback/305f87429f2e99af.json; sha256 305f87429f2e; fresh feedback pending
+session fix-2 (claude-opus-5-5): fix round 2: fix the largest cluster of 6 failing tests; builder result: 10 turns, 56 s, cost $0.69 | model calls: 18
+fix round 2: consumed fresh external feedback 305f87429f2e (fix-round limit unchanged)
+fix round 2: fixed ['T-01', 'T-04', 'T-02', 'T-05'] of ['T-01', 'T-04', 'T-03', 'T-02', 'T-05', 'S-pieces-T-02']; regressions [] -> kept
+fix: stop (failed 2, round 2, 10.2 min left)
+contract: 0 errors, 0 warnings
+workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+done: final-b, kept builder-agentic/work/final-b/fix-2/out/agent.workflow.json
+trace: traces/final-b_20261011-221207.agentic.log
