@@ -7,7 +7,7 @@
     }
   ],
   "repo": "https://github.com/yasiruysal/freya-builder",
-  "commit": "d867a76",
+  "commit": "0170935",
   "run_command": "python3 builder-agentic/build.py {case_folder} {mock_url} --runner cli --minutes 70",
   "workflow": "submission/final.workflow.json",
   "trace": "traces/final.trace.jsonl",
