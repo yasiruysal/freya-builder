@@ -1,0 +1,520 @@
+agentic builder run final-b
+start: 2026-10-11 21:12:18 +03
+end:   2026-10-11 22:18:39 +03
+brief: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/case/CASE.md
+tool API: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/case/service-contract.openapi.json
+runner: cli; builder model: claude-opus-5-5; simulator model: haiku; time limit 80.0 min
+
+## Phase times (seconds, this process)
+  features         0
+  reconcile      179
+  build          219
+  style            0
+  select         826
+  fix            615
+  finish           9
+  validate_tests      58
+  total         1906
+
+## Log
+21:12:18 [ 0.0 min] features: {'raw': True, 'multi_product': False, 'third_party': True, 'identity_fields': [], 'language': 'Turkish'}
+21:15:17 [ 3.0 min] session reconcile (claude-opus-5-5): reconcile the raw brief into RECONCILED.md (rules with sources, overrides); builder result: 10 turns, 178 s, cost $1.66 | model calls: 16
+21:15:17 [ 3.0 min] reconcile: RECONCILED.md written
+21:15:17 [ 3.0 min] reconcile: machine-readable contract written from the documents (8 paths); the contract check uses it
+21:18:56 [ 6.6 min] session cand-1 (claude-opus-5-5): build candidate workflow, skills core+spec-first; builder result: 19 turns, 218 s, cost $1.48 | model calls: 36
+21:18:56 [ 6.6 min] session cand-2 (claude-opus-5-5): build candidate workflow, skills core+spec-first; builder result: 11 turns, 117 s, cost $0.91 | model calls: 21
+21:18:56 [ 6.6 min] session cand-3 (claude-opus-5-5): build candidate workflow, skills core+spec-first+primitives; builder result: 16 turns, 206 s, cost $1.45 | model calls: 30
+21:18:56 [ 6.6 min] session tests (claude-opus-5-5): write test customers from the brief (adversarial); builder result: 8 turns, 73 s, cost $0.64 | model calls: 15
+21:18:56 [ 6.6 min] build: strategies [['core', 'spec-first'], ['core', 'spec-first'], ['core', 'spec-first', 'primitives']]; candidates written: [True, True, True]
+21:18:57 [ 6.6 min] style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-13', 'T-03', 'S-pieces-T-02']
+21:24:22 [12.1 min] select cand-1: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 42 nodes
+21:24:22 [12.1 min] select cand-2: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 12 nodes
+21:24:22 [12.1 min] select cand-3: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 48 nodes
+21:24:22 [12.1 min] kept cand-2
+21:25:28 [13.2 min] session fix-1 (claude-opus-5-5): fix round 1: fix the largest cluster of 6 failing tests; builder result: 13 turns, 65 s, cost $0.71 | model calls: 26
+21:28:01 [15.7 min] fix round 1: fixed [] of ['T-01', 'T-13', 'T-04', 'T-03', 'T-02', 'S-pieces-T-02']; regressions [] -> reverted (nothing fixed)
+21:28:01 [15.7 min] fix: stop (failed 6, round 1, 44.3 min left)
+21:28:01 [15.7 min] contract: 0 errors, 0 warnings
+21:28:01 [15.7 min] workflow: 12 nodes, tools used: cards_balance, cards_list, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+21:28:02 [15.7 min] created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 12 nodes, tools cards_balance, cards_list, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+21:28:02 [15.7 min] done: final-b, kept builder-agentic/work/final-b/cand-2/out/agent.workflow.json
+21:34:43 [22.4 min] MEASUREMENT RESET: original scores invalid (invented ledger expectations, truncated tool evidence and unrecorded terminal speech). Retaining original Opus candidate workflows; corrected test contract/scorer/engine; all old test transcripts and fix session archived, no cached pass reused.
+21:35:09 [22.9 min] resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+21:35:11 [22.9 min] test runtime: observed; actual ledger keys ['attempts', 'callbacks', 'calls', 'case', 'contact_lookups', 'customerNo', 'customer_id', 'identity', 'notes', 'now', 'ok', 'outcome', 'promises', 'reason', 'statement_pdf_sends', 'statement_week_changes', 'statement_week_previews', 'transfers']
+21:35:11 [22.9 min] TEST ERRORS: 16 invalid generated testcases; validating the harness before scoring agents
+21:35:11 [22.9 min]   test T-01: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-02: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-03: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-04: expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-05: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-06: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check; expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-07: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-08: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-09: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check; expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-10: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-11: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-12: expected.statement_sends: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-13: expected.transfers: positive transfers are not recorded by any exposed transfer API/tool; check the actual semantic exit and conversation instead
+21:35:11 [22.9 min]   test T-14: expected.transfers: positive transfers are not recorded by any exposed transfer API/tool; check the actual semantic exit and conversation instead
+21:35:11 [22.9 min]   test T-17: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:11 [22.9 min]   test T-18: expected.statement_date_changes: unknown ledger key; use an actual recorded key or a conversation check
+21:35:33 [23.2 min] session tests-repair (claude-opus-5-5): repair generated test expectations against the actual ledger and raw sources; builder result: 5 turns, 21 s, cost $0.41 | model calls: 9
+21:35:33 [23.2 min] tests-repair: 18 valid, 0 still invalid (originally 16 invalid)
+21:35:33 [23.2 min] validate_tests: 18 valid tests; raw input preserved at tests/out/tests.raw.json; details in TEST_ERRORS.json
+21:35:33 [23.2 min] style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-03', 'T-05', 'S-pieces-T-02']
+21:45:05 [32.8 min] TEST SPECIFICITY RESET: the first automatic correction erased positive-record fields. Updated validation rejects empty record expectations and supplies actual mock documentation by URL; restarting with original unmodified candidates, no cached passes.
+21:45:49 [33.5 min] resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+21:45:49 [33.5 min] TEST ERRORS: 4 invalid generated testcases; validating the harness before scoring agents
+21:45:49 [33.5 min]   test T-02: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+21:45:49 [33.5 min]   test T-04: expected.statement_pdf_sends[0]: empty object record drops every positive field constraint
+21:45:49 [33.5 min]   test T-05: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+21:45:49 [33.5 min]   test T-08: expected.statement_week_changes[0]: empty object record drops every positive field constraint
+21:45:49 [33.5 min] tests-repair-1: 14 valid, 4 still invalid (originally 4 invalid)
+21:46:24 [34.1 min] session tests-repair-2 (claude-opus-5-5): repair generated test expectations (attempt 2) against the actual ledger and raw sources; builder result: 7 turns, 34 s, cost $0.48 | model calls: 13
+21:46:24 [34.1 min] tests-repair-2: 18 valid, 0 still invalid (originally 4 invalid)
+21:46:24 [34.1 min] validate_tests: 18 valid tests; raw input preserved at tests/out/tests.raw.json; details in TEST_ERRORS.json
+21:46:24 [34.1 min] style: 18 coverage tests + 10 style variants; selection set ['T-01', 'T-02', 'T-04', 'T-03', 'T-05', 'S-pieces-T-02']
+21:54:45 [42.4 min] select cand-1: 2/6 passed (on 6 tests every candidate completed; 2/6 of its own), 1 style failures, 0 contract errors, 42 nodes
+21:54:45 [42.4 min] select cand-2: 1/6 passed (on 6 tests every candidate completed; 1/6 of its own), 1 style failures, 0 contract errors, 12 nodes
+21:54:45 [42.4 min] select cand-3: 0/6 passed (on 6 tests every candidate completed; 0/6 of its own), 1 style failures, 0 contract errors, 48 nodes
+21:54:45 [42.4 min] kept cand-1
+21:55:26 [43.1 min] session fix-1 (claude-opus-5-5): fix round 1: fix the largest cluster of 4 failing tests; builder result: 10 turns, 40 s, cost $0.54 | model calls: 19
+21:56:46 [44.5 min] fix round 1: fixed ['T-04', 'T-03'] of ['T-04', 'T-03', 'T-05', 'S-pieces-T-02']; regressions ['T-02'] -> reverted (veto)
+21:56:46 [44.5 min] fix: stop (failed 4, round 1, 15.5 min left)
+21:56:46 [44.5 min] contract: 0 errors, 0 warnings
+21:56:46 [44.5 min] workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+21:56:49 [44.5 min] created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+21:56:49 [44.5 min] done: final-b, kept builder-agentic/work/final-b/cand-1/out/agent.workflow.json
+22:09:40 [57.4 min] resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+22:09:40 [57.4 min] external feedback (native Freya grader): 0/2 passed; failed ['T-01', 'T-02']; source /Users/yasir/Documents/Claude/Freya-agentic/results/final-b-freya-smoke.json; archived external-feedback/305f87429f2e99af.json; sha256 305f87429f2e; fresh feedback pending
+22:10:38 [58.3 min] session fix-2 (claude-opus-5-5): fix round 2: fix the largest cluster of 6 failing tests; builder result: 10 turns, 56 s, cost $0.69 | model calls: 18
+22:10:38 [58.3 min] fix round 2: consumed fresh external feedback 305f87429f2e (fix-round limit unchanged)
+22:12:03 [59.8 min] fix round 2: fixed ['T-01', 'T-04', 'T-02', 'T-05'] of ['T-01', 'T-04', 'T-03', 'T-02', 'T-05', 'S-pieces-T-02']; regressions [] -> kept
+22:12:03 [59.8 min] fix: stop (failed 2, round 2, 10.2 min left)
+22:12:03 [59.8 min] contract: 0 errors, 0 warnings
+22:12:03 [59.8 min] workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+22:12:07 [59.8 min] created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+22:12:07 [59.8 min] done: final-b, kept builder-agentic/work/final-b/fix-2/out/agent.workflow.json
+22:16:23 [64.1 min] resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+22:16:23 [64.1 min] external feedback (external grader): 0/2 passed; failed ['S-pieces-T-02', 'T-03']; source /Users/yasir/Documents/Claude/Freya-agentic/results/final-b-source-review.json; archived external-feedback/77ab14b42b0b36c4.json; sha256 77ab14b42b0b; fresh feedback pending
+22:17:19 [65.0 min] session fix-3 (claude-opus-5-5): fix round 3: fix the largest cluster of 2 failing tests; builder result: 12 turns, 55 s, cost $0.75 | model calls: 21
+22:17:19 [65.0 min] fix round 3: consumed fresh external feedback 77ab14b42b0b (fix-round limit unchanged)
+22:18:34 [66.3 min] fix round 3: fixed ['T-03', 'S-pieces-T-02'] of ['T-03', 'S-pieces-T-02']; regressions [] -> kept
+22:18:34 [66.3 min] fix: stop (failed 0, round 3, 13.7 min left)
+22:18:34 [66.3 min] contract: 0 errors, 0 warnings
+22:18:34 [66.3 min] workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+22:18:39 [66.4 min] created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+22:18:39 [66.4 min] done: final-b, kept builder-agentic/work/final-b/fix-3/out/agent.workflow.json
+
+## Model calls (builder sessions)
+### reconcile (claude-opus-5-5): reconcile the raw brief into RECONCILED.md (rules with sources, overrides)
+builder result: 10 turns, 178 s, cost $1.66
+model calls: 16
+    1. claude-opus-5-5 | Bash: List and read brief and contract
+    2. claude-opus-5-5 | 
+    3. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/brief/CASE.md
+    4. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/brief/case/statement-debt-call-flow.p
+    5. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/brief/CASE.md
+    6. claude-opus-5-5 | 
+    7. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/brief/CASE.md
+    8. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/brief/CASE.md
+    9. claude-opus-5-5 | 
+   10. claude-opus-5-5 | Tüm belgeler okundu; şimdi RECONCILED.md ve contract.openapi.json yazıyorum.
+   11. claude-opus-5-5 | Write: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/reconcile/out/RECONCILED.md
+   12. claude-opus-5-5 | 
+   13. claude-opus-5-5 | Bash: Check whether contract has paths
+   14. claude-opus-5-5 | Bash: Generate OpenAPI contract file
+   15. claude-opus-5-5 | 
+   16. claude-opus-5-5 | I've written both files: `out/RECONCILED.md` with 98 numbered rules, and `out/contract.openapi.json`. The bank's service contract was a docu
+### cand-1 (claude-opus-5-5): build candidate workflow, skills core+spec-first
+builder result: 19 turns, 218 s, cost $1.48
+model calls: 36
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: Check time and list files
+    3. claude-opus-5-5 | 
+    4. claude-opus-5-5 | Bash: Read core skill
+    5. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-1/RECONCILED.md
+    6. claude-opus-5-5 | 
+    7. claude-opus-5-5 | Bash: Inspect API paths
+    8. claude-opus-5-5 | 
+    9. claude-opus-5-5 | Bash: Scan format docs and write-tool schemas
+   10. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-1/docs/workflow-format.md
+   11. claude-opus-5-5 | 
+   12. claude-opus-5-5 | Building the workflow now with a generator script (time is short).
+   13. claude-opus-5-5 | Bash: Check normalize API and field names
+   14. claude-opus-5-5 | 
+   15. claude-opus-5-5 | Bash: Generate workflow and run contract check
+   16. claude-opus-5-5 | 
+   17. claude-opus-5-5 | Bash: Check code field name and run dry-run validation
+   18. claude-opus-5-5 | Bash: Show code node example and run dry run
+   19. claude-opus-5-5 | Grep: 
+   20. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-1/docs/tools-and-code.md
+   21. claude-opus-5-5 | 
+   22. claude-opus-5-5 | Fixing the code-node format, then re-validating.
+   23. claude-opus-5-5 | Bash: Patch code nodes, regenerate, compile-check, validate
+   24. claude-opus-5-5 | 
+   25. claude-opus-5-5 | Bash: Check balance response shape
+   26. claude-opus-5-5 | 
+   27. claude-opus-5-5 | Dates come as dd.MM.yyyy — patching date handling.
+   28. claude-opus-5-5 | Bash: Fix date parsing, regenerate, validate
+   29. claude-opus-5-5 | 
+   30. claude-opus-5-5 | Bash: Smoke-test the debt reading code
+   31. claude-opus-5-5 | 
+   32. claude-opus-5-5 | Bash: Fix due-date suffix, regenerate, validate
+   33. claude-opus-5-5 | 
+   34. claude-opus-5-5 | Bash: Smoke-test card parsing and matching
+   35. claude-opus-5-5 | 
+   36. claude-opus-5-5 | Workflow `out/agent.workflow.json` dosyasına yazıldı. Freya dry run'ı geçti (`valid: True`) ve sözleşme kontrolünde 0 hata, 0 uyarı var. Zam
+### cand-2 (claude-opus-5-5): build candidate workflow, skills core+spec-first
+builder result: 11 turns, 117 s, cost $0.91
+model calls: 21
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: Check time and list project files
+    3. claude-opus-5-5 | 
+    4. claude-opus-5-5 | Bash: Read skills and library
+    5. claude-opus-5-5 | 
+    6. claude-opus-5-5 | Bash: Read reconciled rules
+    7. claude-opus-5-5 | 
+    8. claude-opus-5-5 | Read: /Users/yasir/.claude/projects/-Users-yasir-Documents-Claude-Freya-agentic-builder-agentic-work-final-b-cand-2/a812b709-b
+    9. claude-opus-5-5 | 
+   10. claude-opus-5-5 | Bash: Check API paths and format docs
+   11. claude-opus-5-5 | Reading the format docs, then writing the workflow.
+   12. claude-opus-5-5 | Bash: Read workflow format examples
+   13. claude-opus-5-5 | 
+   14. claude-opus-5-5 | Bash: Generate workflow JSON
+   15. claude-opus-5-5 | 
+   16. claude-opus-5-5 | Bash: Run contract check and dry-run validation
+   17. claude-opus-5-5 | Bash: Dry-run validate workflow on Freya
+   18. claude-opus-5-5 | 
+   19. claude-opus-5-5 | Bash: Switch entry to model-written, regenerate, revalidate
+   20. claude-opus-5-5 | 
+   21. claude-opus-5-5 | `out/agent.workflow.json` yazıldı. Freya dry run'ı geçti (`valid: True`), sözleşme kontrolü 0 hata, 0 uyarı verdi. Simülatörde müşteri testi
+### cand-3 (claude-opus-5-5): build candidate workflow, skills core+spec-first+primitives
+builder result: 16 turns, 206 s, cost $1.45
+model calls: 30
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: Check time and list project files
+    3. claude-opus-5-5 | 
+    4. claude-opus-5-5 | Bash: Check sizes of instruction files
+    5. claude-opus-5-5 | 
+    6. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-3/.claude/skills/core/SKILL.md
+    7. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-3/RECONCILED.md
+    8. claude-opus-5-5 | Bash: Read other skills, library, and contract summary
+    9. claude-opus-5-5 | 
+   10. claude-opus-5-5 | Bash: Check time, node types, server URL
+   11. claude-opus-5-5 | 
+   12. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-3/docs/workflow-format.md
+   13. claude-opus-5-5 | 
+   14. claude-opus-5-5 | Building now: I've read the rules, next I'm checking the tool format.
+   15. claude-opus-5-5 | Bash: Show pre_actions, terminal, transition examples
+   16. claude-opus-5-5 | 
+   17. claude-opus-5-5 | Bash: Show condition shapes and extraction schema
+   18. claude-opus-5-5 | 
+   19. claude-opus-5-5 | Bash: Show response schemas
+   20. claude-opus-5-5 | 
+   21. claude-opus-5-5 | Write: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/cand-3/out/build.py
+   22. claude-opus-5-5 | Bash: Build workflow and run contract check
+   23. claude-opus-5-5 | 
+   24. claude-opus-5-5 | Bash: Check code compiles, targets exist, Freya dry run
+   25. claude-opus-5-5 | Workflow built (48 nodes, contract check clean); now running the Freya dry run.
+   26. claude-opus-5-5 | Bash: Run Freya dry-run validation
+   27. claude-opus-5-5 | 
+   28. claude-opus-5-5 | Bash: Locally test reading and selection code
+   29. claude-opus-5-5 | 
+   30. claude-opus-5-5 | I've written the phone agent to `out/agent.workflow.json`. Freya's dry run accepted it (`valid: True`), and the tool API check (`tools/contr
+### tests (claude-opus-5-5): write test customers from the brief (adversarial)
+builder result: 8 turns, 73 s, cost $0.64
+model calls: 15
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: List workspace and read brief
+    3. claude-opus-5-5 | 
+    4. claude-opus-5-5 | Bash: Read local brief and list files
+    5. claude-opus-5-5 | 
+    6. claude-opus-5-5 | Bash: Read selftest format, scenarios, test customers
+    7. claude-opus-5-5 | 
+    8. claude-opus-5-5 | Bash: Read redteam steps and decisions recap
+    9. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/tests/brief/case/sources/emails/2026-10-09-deci
+   10. claude-opus-5-5 | Glob: 
+   11. claude-opus-5-5 | 
+   12. claude-opus-5-5 | Brief, örnek konuşmalar ve test müşterileri okundu; şimdi tests.json yazıyorum.
+   13. claude-opus-5-5 | Write: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/tests/out/tests.json
+   14. claude-opus-5-5 | 
+   15. claude-opus-5-5 | `out/tests.json` yazıldı: 18 test. Ama bu bir taslak; çalıştırmadan önce aşağıdaki boşlukların kapanması lazım.
+### initial-invalid-fix-1 (claude-opus-5-5): initial measurement invalid; original fix round 1: fix the largest cluster of 6 failing tests
+builder result: 13 turns, 65 s, cost $0.71
+model calls: 26
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: cat FAILURES.md; ls out tools; wc -c .claude/skills/core/SKILL.md LIBRARY.md brief/CASE.md out/*
+    3. claude-opus-5-5 | Bash: for f in failures/*.txt; do echo "== $f"; sed -n '/# failed/,$p' $f; done; python3 tools/contract.py out/agent.workflow.
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: ls; python3 -c " import json;w=json.load(open('out/agent.workflow.json'));print(w.keys()) for n in w.get('nodes',[]):   
+    6. claude-opus-5-5 | 
+    7. claude-opus-5-5 | Bash: python3 -c " import json;w=json.load(open('out/agent.workflow.json')) print(w['initial_node'], w['global_nodes'] if not 
+    8. claude-opus-5-5 | 
+    9. claude-opus-5-5 | Bash: grep -n "tool call\|tool result" failures/T-02.txt | cut -c1-400; grep -n "tool call\|tool result" failures/T-04.txt | c
+   10. claude-opus-5-5 | 
+   11. claude-opus-5-5 | Tüm araç çağrıları başarılı ama sonuç durumu boş; çağrılar bitiş düğümüne ulaşmıyor gibi. Geçişlere bakıyorum.
+   12. claude-opus-5-5 | Bash: tail -8 failures/T-02.txt | cut -c1-300; python3 -c " import json;w=json.load(open('out/agent.workflow.json')) for k,n i
+   13. claude-opus-5-5 | 
+   14. claude-opus-5-5 | Bash: python3 -c " import json;w=json.load(open('out/agent.workflow.json')) n=w['nodes']['offer'];print(json.dumps(n['extracti
+   15. claude-opus-5-5 | Read: /Users/yasir/Documents/Claude/Freya-agentic/builder-agentic/work/final-b/fix-1/.claude/skills/core/SKILL.md
+   16. claude-opus-5-5 | 
+   17. claude-opus-5-5 | Bash: grep -n -i "intent\|__function__\|llm_condition\|\"type\": \"function\"" docs/workflow-format.md docs/tools-and-code.md 
+   18. claude-opus-5-5 | 
+   19. claude-opus-5-5 | Bash: sed -n 55,120p docs/tools-and-code.md; grep -n "code_exec" -A25 docs/tools-and-code.md | sed -n 1,60p | tail -40; ls out
+   20. claude-opus-5-5 | 
+   21. claude-opus-5-5 | Bash: grep -n -B3 -A22 '"handler": "__function__:code_exec"' docs/*.md | head -45
+   22. claude-opus-5-5 | 
+   23. claude-opus-5-5 | Çıkışları koda bağlıyorum: her çıkış için bir code_exec aracı, değişken yazıyor, geçiş ona göre.
+   24. claude-opus-5-5 | Bash: python3 - <<'EOF' import json p='out/agent.workflow.json' w=json.load(open(p)) exits=["main_menu","agent","pay_agent","d
+   25. claude-opus-5-5 | 
+   26. claude-opus-5-5 | Bu turda düzeltmeleri `out/agent.workflow.json` içine yaptım. Contract kontrolü temiz: 0 hata, 0 uyarı. Testleri yeniden çalıştırmadım, yani
+### tests-repair (claude-opus-5-5): repair generated test expectations against the actual ledger and raw sources
+builder result: 5 turns, 21 s, cost $0.41
+model calls: 9
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: List inputs and show errors/runtime
+    3. claude-opus-5-5 | Bash: Show runtime and tests
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: Find ledger record shapes in mock
+    6. claude-opus-5-5 | 
+    7. claude-opus-5-5 | Bash: Write corrected tests to out/tests.json
+    8. claude-opus-5-5 | 
+    9. claude-opus-5-5 | I wrote 18 tests to `out/tests.json`. Only the errors listed in `TEST_ERRORS.json` are fixed. With the 2-minute limit I did not check the am
+### tests-repair-2 (claude-opus-5-5): repair generated test expectations (attempt 2) against the actual ledger and raw sources
+builder result: 7 turns, 34 s, cost $0.48
+model calls: 13
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: List inputs and show errors/runtime
+    3. claude-opus-5-5 | Bash: Show bank doc and previous tests expected
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: Show the four failing tests
+    6. claude-opus-5-5 | Bash: Show fixtures for the three customers
+    7. claude-opus-5-5 | 
+    8. claude-opus-5-5 | Bash: Show Sevda week data
+    9. claude-opus-5-5 | 
+   10. claude-opus-5-5 | Filling in the four empty records with typed values from the fixtures, then writing the file.
+   11. claude-opus-5-5 | Bash: Write corrected tests
+   12. claude-opus-5-5 | 
+   13. claude-opus-5-5 | I wrote all 18 tests to `out/tests.json`. Only the four tests that had empty `[{}]` records changed. Each now has the real recorded fields w
+### fix-1 (claude-opus-5-5): fix round 1: fix the largest cluster of 4 failing tests
+builder result: 10 turns, 40 s, cost $0.54
+model calls: 19
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: cat FAILURES.md; ls; ls out; wc -c .claude/skills/core/SKILL.md LIBRARY.md brief/CASE.md out/*
+    3. claude-opus-5-5 | Bash: for f in failures/*.txt; do echo "== $f"; sed -n '/# failed/,$p' $f; done; ls out lib tools
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) print(w.keys()) nodes=w.get('nodes') or w.get('
+    6. claude-opus-5-5 | 
+    7. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) nodes=w['nodes'] it = nodes.items() if isinstan
+    8. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) nodes=w['nodes'] for k,n in nodes.items():     
+    9. claude-opus-5-5 | 
+   10. claude-opus-5-5 | Ekstre haftası değişikliği akışına bakıyorum (en somut hata).
+   11. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) nodes=w['nodes'] for k in ['week_ask','week_pic
+   12. claude-opus-5-5 | 
+   13. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) for k,n in w['nodes'].items():     if n.get('no
+   14. claude-opus-5-5 | 
+   15. claude-opus-5-5 | Bash: python3 - <<'E' import json w=json.load(open('out/agent.workflow.json')) n=w['nodes']['email_confirm'] print(json.dumps(
+   16. claude-opus-5-5 | 
+   17. claude-opus-5-5 | Bash: python3 - <<'E' import json p='out/agent.workflow.json' w=json.load(open(p)) N=w['nodes'] N['email_confirm']['on_enter']
+   18. claude-opus-5-5 | 
+   19. claude-opus-5-5 | I fixed the two failures that were real agent faults by editing `out/agent.workflow.json` directly (there's no generator script). The contra
+### fix-2 (claude-opus-5-5): fix round 2: fix the largest cluster of 6 failing tests
+builder result: 10 turns, 56 s, cost $0.69
+model calls: 18
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: Read failures and list files
+    3. claude-opus-5-5 | Bash: Show failure reasons
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: Inspect workflow nodes and dueDate use
+    6. claude-opus-5-5 | Bash: List nodes and date formatting
+    7. claude-opus-5-5 | Let me dump the code of build_reading, week_build and the speaking nodes.
+    8. claude-opus-5-5 | Bash: Dump key node definitions
+    9. claude-opus-5-5 | I'll extract the tail of the code (after helper functions) for the relevant nodes.
+   10. claude-opus-5-5 | Bash: Show node-specific code tails
+   11. claude-opus-5-5 | 
+   12. claude-opus-5-5 | Bash: Inspect email and week confirm nodes
+   13. claude-opus-5-5 | 
+   14. claude-opus-5-5 | Bash: Apply fixes and run contract check
+   15. claude-opus-5-5 | 
+   16. claude-opus-5-5 | Bash: Confirm week_decide uses new_week
+   17. claude-opus-5-5 | 
+   18. claude-opus-5-5 | I fixed four of the failures in `out/agent.workflow.json`. There was no generator script, so I edited the JSON directly. The contract check 
+### fix-3 (claude-opus-5-5): fix round 3: fix the largest cluster of 2 failing tests
+builder result: 12 turns, 55 s, cost $0.75
+model calls: 21
+    1. claude-opus-5-5 | 
+    2. claude-opus-5-5 | Bash: Read failures and list outputs
+    3. claude-opus-5-5 | Bash: Show failure reasons
+    4. claude-opus-5-5 | 
+    5. claude-opus-5-5 | Bash: Inspect workflow for relevant states
+    6. claude-opus-5-5 | Bash: List nodes and transitions
+    7. claude-opus-5-5 | Bash: Dump relevant nodes
+    8. claude-opus-5-5 | 
+    9. claude-opus-5-5 | Iki hatayı inceliyorum: kart seçim sayacı ve hafta seçeneklerinin atlanması. Kodları okuyorum.
+   10. claude-opus-5-5 | Bash: Show custom code and brief rules
+   11. claude-opus-5-5 | Bash: Read section 3.3 and T-03 transcript
+   12. claude-opus-5-5 | 
+   13. claude-opus-5-5 | Bash: Find week_lead and req_week usage
+   14. claude-opus-5-5 | 
+   15. claude-opus-5-5 | Düzeltmeleri JSON'a uyguluyorum.
+   16. claude-opus-5-5 | Bash: Apply fixes and run contract check
+   17. claude-opus-5-5 | 
+   18. claude-opus-5-5 | Bash: Compile code and check end message
+   19. claude-opus-5-5 | Bash: Inspect end_tries node
+   20. claude-opus-5-5 | 
+   21. claude-opus-5-5 | İki hatayı da düzelttim. Değişiklikler doğrudan `out/agent.workflow.json` içinde, çünkü `out/` klasöründe bir üretici (generator) dosyası yo
+
+## Self-tests (local simulator)
+### initial measurement invalid: select cand-1 (builder-agentic/work/final-b/cand-1/out/agent.workflow.json)
+FAIL T-13 11s | cards.list > cards.balance > contact.email.get
+    - transfers [], expected [{'queue': 'agent'}]
+    - conversation: The agent did not take payment, but it also never transferred the caller to a human agent. After the customer said they wanted to pay now, the workflow ended at 'end_pay' without a transfer, so the second required condition fails.
+FAIL T-01 14s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+FAIL T-04 19s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - statement_sends null, expected [{"customerNo": "92460108"}]
+    - conversation: Balances, the Sterling check, the due date, and the email read-back with confirmation all pass. However, the agent never said that only the latest statement can be sent when the customer asked for last month's, and it sent the 05.10.2026 statement without clarifying that. The agent als
+FAIL T-02 34s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: All the data, preview, and single-change checks are met, but the transcript never shows a return to the main menu. The workflow simply ends at 'end_week_done' after the confirmed change, with no agent utterance or step offering the main menu.
+FAIL T-03 45s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+FAIL S-pieces-T-02 40s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+0 / 6 passed in 75 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 44 (customer and judge on haiku, agent on haiku)
+### initial measurement invalid: select cand-2 (builder-agentic/work/final-b/cand-2/out/agent.workflow.json)
+FAIL T-01 44s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+    - conversation: The agent read the TL figures and the 15 Ekim due date correctly, but it never read the Euro amounts (85,20 and minimum 34,10) or stated the no-debt status for Dolar and İngiliz Sterlini in one sentence. It also never offered an additional transaction before routing to the main menu.
+FAIL T-13 46s | cards.list > cards.balance
+    - transfers [], expected [{'queue': 'agent'}]
+FAIL T-04 51s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - statement_sends null, expected [{"customerNo": "92460108"}]
+    - conversation: The agent gave only the TL debt and due date, omitting the Dolar, Euro, and Sterlin details. It asked to send to the address starting with 'e' without reading out ece.demir@freyabank.example, and never said only the latest statement can be sent. The 'gönderildi' after DONE and main-men
+FAIL T-03 68s | cards.list > cards.balance
+    - statement_date_changes null, expected []
+FAIL T-02 76s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: The agent never offered the available statement weeks (1, 3, 4) and went straight from asking whether to change the date to the customer's chosen week 3. It also told the customer the statement date can be changed once a year, which no tool result supported. All other criteria (balance
+FAIL S-pieces-T-02 87s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: The agent never offered the available statement weeks (1, 3, 4) as the criteria require; it only asked whether the customer wanted to change the date and accepted week 3 when the customer named it. The other checks pass: the debt figures, current week 2, the 9 and 19 Kasım dates, the p
+0 / 6 passed in 163 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 95 (customer and judge on haiku, agent on haiku)
+### initial measurement invalid: select cand-3 (builder-agentic/work/final-b/cand-3/out/agent.workflow.json)
+FAIL T-03 18s | cards.list
+    - statement_date_changes null, expected []
+    - conversation: The agent correctly asked which card with examples and never read all three cards, but the call ended at the x_fail3 failure step without giving the Yıldız Premium amounts (22.500 TL total, 9.000 TL minimum, due 15 Ekim 2026) and without returning to the main menu.
+FAIL T-13 22s | cards.list > cards.balance > contact.email.get
+    - transfers [], expected [{'queue': 'agent'}]
+    - conversation: The call never transferred to a human agent. After the customer said they wanted to pay now, the workflow routed to the payment step (x_pay) and ended there, so the criterion requiring a human transfer is not met.
+FAIL T-01 23s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+    - conversation: The agent never read out the balance details (2000 Yıldız Premium, statement date, TL totals, Euro and Dolar/Sterlini figures, due date) and instead refused to answer and offered the main menu, then the workflow ended at x_menu. The transcript also shows the call ending without the req
+FAIL T-04 29s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - statement_sends null, expected [{"customerNo": "92460108"}]
+    - conversation: The agent stated only the TL debt and never mentioned the USD (650) or EUR (380) balances or the absence of GBP debt, and it never said that only the latest statement can be sent. The email confirmation and the 'gönderildi' after DONE were handled correctly.
+FAIL T-02 43s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: The debt summary omitted the remaining 5.000 TL and the thanks for the minimum payment, and it stated a 4.000 TL minimum payment instead. The later steps (week 2 current, offered weeks 1/3/4, preview of 16 and 26 Kasım, one change after explicit evet, matching final dates, main menu) a
+FAIL S-pieces-T-02 43s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: The debt reply gave the 10.000 TL balance, 4.000 TL minimum and 19 Ekim due date but omitted the 5.000 TL remaining debt and the thanks for the minimum payment. All other criteria (current week 2, next cut 9 Kasım/due 19 Kasım, weeks 1/3/4 offered, preview of 16 and 26 Kasım with confi
+0 / 6 passed in 86 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 49 (customer and judge on haiku, agent on haiku)
+### initial measurement invalid: fix round 1 fix-1 (builder-agentic/work/final-b/fix-1/out/agent.workflow.json)
+FAIL T-13 29s | cards.list > cards.balance
+    - transfers [], expected [{'queue': 'agent'}]
+FAIL T-01 41s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+    - conversation: The agent read the TL figures, card and due date correctly, but never read the Euro balance (85,20 and minimum 34,10) or the no-debt sentence for Dolar and İngiliz Sterlini, and it did not offer an additional transaction before routing to the main menu.
+FAIL T-04 48s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - statement_sends null, expected [{"customerNo": "92460108"}]
+    - conversation: The agent reported only the TL debt (18.500, minimum 7.400, due date) and omitted the Dolar 650, Euro 380 and no-Sterlin details. It also never read the full email address aloud; it asked to send to the address starting with 'e', not to ece.demir@freyabank.example. The statement-only-l
+FAIL T-02 77s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+FAIL T-03 83s | cards.list > cards.balance > contact.email.get
+    - statement_date_changes null, expected []
+    - conversation: The agent asked which card using the customer's own card names, gave the correct Yıldız Premium amounts and due date, and ended at main_menu. However, the customer never asked for a repeat, so the requirement that a repeat not end the call and the agent asks again was never exercised.
+FAIL S-pieces-T-02 76s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - statement_date_changes null, expected [{"cardNumber": "540000******1110", "newStatementWeek": "3"}]
+    - conversation: All other criteria are met, including the exactly-once change after explicit 'Evet' and the matching 16/26 Kasım preview and result. However, the agent never offered the week options (1, 3, 4), so the criterion that only weeks 1, 3 and 4 were offered is not demonstrated.
+0 / 6 passed in 153 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 87 (customer and judge on haiku, agent on haiku)
+### select cand-1 (builder-agentic/work/final-b/cand-1/out/agent.workflow.json)
+PASS T-01 15s | cards.list > cards.balance > contact.email.get
+FAIL T-04 20s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - conversation: The customer asked for last month's statement, but the agent never said only the latest statement can be sent. It silently sent the 05.10.2026 statement and then told the customer 'Ekstreniz gönderildi', implying the requested statement was delivered. The other criteria (amounts, due d
+FAIL T-03 36s | cards.list > cards.balance > contact.email.get
+    - conversation: The card-selection, Yıldız Premium amounts (22.500 TL, minimum 9.000 TL, due 15 Ekim 2026), and main-menu ending all check out. However, the customer never requests a repeat, so the required behavior that a repeat does not end the call and the agent asks again is never exercised.
+PASS T-02 37s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+FAIL T-05 42s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The statement week change was handled correctly: the agent read back the preview dates, ignored the non-committal 'Olur herhalde' and asked again, made one change, and gave 16 Kasım / 26 Kasım. However, the spouse-card refusal never occurred because the caller never requested a spouse 
+FAIL S-pieces-T-02 45s | cards.list > cards.balance > contact.email.get > statement.week.get
+    - statement_week_changes [], expected [{"cardNumber": "540000******1110", "newStatementWeek": 3, "statementDay": 9}]
+    - conversation: The agent correctly stated the debt, minimum-payment thanks, due dates, and next statement cycle, but it never read a preview with the 16 and 26 Kasım dates before asking for confirmation. It also never executed the week-3 change, and the call ended in a failed transfer to the main men
+2 / 6 passed in 124 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 49 (customer and judge on haiku, agent on haiku)
+### select cand-2 (builder-agentic/work/final-b/cand-2/out/agent.workflow.json)
+FAIL T-01 45s | cards.list > cards.balance > contact.email.get
+    - conversation: The agent never offered an additional transaction after the balance read-out; it went straight from the customer's thanks to a hidden email lookup and the main-menu redirect. The Euro amounts were also read as '85.2' and '34.1' rather than 85,20 and 34,10, though the values are correct
+FAIL T-03 57s | cards.list > cards.balance
+    - conversation: The agent meets the other three criteria: it asks which card with examples from the customer's own cards, reports the correct 22.500 TL debt, 9.000 TL minimum and 15 Ekim 2026 due date, and ends at the main menu. However, the customer never asks for a repeat, so the required 'repeat do
+FAIL T-02 75s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The agent never offered weeks 1, 3, and 4 to the customer; it only asked whether they wanted to change the statement date, and the customer named week 3 unprompted. All other criteria were met: the debt and due-date read-out, the preview of 16 and 26 Kasım, the explicit confirmation, t
+FAIL T-04 78s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - conversation: The agent asked for confirmation but never read the email address ece.demir@freyabank.example aloud, only saying 'E ile başlayan kayıtlı adresiniz'. The amounts, latest-statement-only disclosure, 'gönderildi' after DONE, and main-menu routing all check out.
+PASS T-05 118s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+FAIL S-pieces-T-02 64s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The agent never stated the next cut date (9 Kasım 2026) or the next due date (19 Kasım 2026), and it did not offer weeks 1, 3, and 4 as options, going straight to week 3 at the customer's request. The preview, explicit confirmation, single change, matching dates, and return to main men
+1 / 6 passed in 257 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 111 (customer and judge on haiku, agent on haiku)
+### select cand-3 (builder-agentic/work/final-b/cand-3/out/agent.workflow.json)
+FAIL T-03 20s | cards.list
+    - conversation: The agent never gives the Yıldız Premium balance (22.500 TL, minimum 9.000 TL, due 15 Ekim 2026). After the customer's second request, it fails out at x_fail3 instead of asking again, and the workflow ends on a failure node.
+FAIL T-01 24s | cards.list > cards.balance > contact.email.get
+    - conversation: The reading omits the card identification and statement date, the TL minimum, remaining debt and remaining minimum figures, and the EUR minimum of 34,10. It also states the euro amount as 85,2 instead of 85,20 and never gives the one-sentence no-debt statement for Dolar and İngiliz Ste
+FAIL T-04 30s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+    - conversation: The agent sent the 05.10.2026 statement, which is the latest one, after the customer asked for last month's, and never told the customer that only the latest statement can be sent. It also omitted the minimum payment amounts (7.400 TL, 260 USD, 152 EUR) and the no-sterling-debt status.
+FAIL T-02 41s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The debt answer gave the statement debt (10.000 TL), minimum payment and due date, but omitted the remaining 5.000 TL and the thanks for the minimum payment. All other criteria (week details, offered weeks, preview with confirmation, single change after explicit consent, matching resul
+FAIL T-05 34s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The date-preview, single-change, and correct 16 Kasım / 26 Kasım criteria are met, but the transcript never includes an 'Olur herhalde' reply or a spouse-card request, so those two criteria cannot be verified as true.
+FAIL S-pieces-T-02 44s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The debt summary fails the first criterion: the agent said only 'Toplam borcunuz 5.000 Türk Lirası' and omitted the 10.000 TL statement debt, the minimum-payment thanks, and the 5.000 TL remaining-after-minimum framing. The remaining steps (current week 2 with 9 and 19 Kasım, only week
+0 / 6 passed in 119 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 52 (customer and judge on haiku, agent on haiku)
+### fix round 1 fix-1 (builder-agentic/work/final-b/fix-1/out/agent.workflow.json)
+PASS T-01 14s | cards.list > cards.balance > contact.email.get
+PASS T-04 19s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+FAIL T-02 26s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The agent never offered the week options, so the criterion that only weeks 1, 3 and 4 are offered is not shown; the customer named week 3 unprompted. The other criteria are met: the debt and due-date summary, the 9 Kasım cut-off, the 16 and 26 Kasım preview with confirmation, a single 
+PASS T-03 36s | cards.list > cards.balance > contact.email.get
+FAIL T-05 27s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The date change itself is correct: the preview was read back, an explicit 'Evet' was obtained before the change, and only one change was made to 16 Kasım / 26 Kasım. However, the caller never asked about a spouse card, so the spouse-card refusal criterion is not met. The agent also ran
+FAIL S-pieces-T-02 26s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The agent never offered the week options (1, 3, 4) as the criteria require; it went straight to the customer's requested week 3. All other criteria hold: debt and due-date read, the preview of 16 and 26 Kasım, a single change after explicit confirmation, matching result dates, and retu
+3 / 6 passed in 80 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 39 (customer and judge on haiku, agent on haiku)
+### fix round 2 fix-2 (builder-agentic/work/final-b/fix-2/out/agent.workflow.json)
+PASS T-01 16s | cards.list > cards.balance > contact.email.get
+PASS T-04 22s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+PASS T-02 28s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+PASS T-05 29s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+FAIL S-pieces-T-02 19s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+    - conversation: The agent never offered the available statement weeks, so the required 'only weeks 1, 3, 4 offered' check cannot be confirmed; the customer picked week 3 without hearing any options. All other criteria (debt figures and due date, current and next cut dates, preview of 16 and 26 Kasım w
+FAIL T-03 85s | cards.list
+    - conversation: The agent never read all three cards and repeatedly asked which card to choose, and the repeated request did not end the call. However, after the customer chose Yıldız Premium, the agent never gave the 22.500 TL balance, 9.000 TL minimum, or 15 Ekim 2026 due date. It transferred to the
+4 / 6 passed in 85 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 55 (customer and judge on haiku, agent on haiku)
+### fix round 3 fix-3 (builder-agentic/work/final-b/fix-3/out/agent.workflow.json)
+PASS T-01 13s | cards.list > cards.balance > contact.email.get
+PASS T-04 19s | cards.list > cards.balance > contact.email.get > statement.pdf.send
+PASS T-02 24s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+PASS T-03 40s | cards.list > cards.balance > contact.email.get
+PASS T-05 30s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+PASS S-pieces-T-02 20s | cards.list > cards.balance > contact.email.get > statement.week.get > statement.week.decide > statement.week.change
+6 / 6 passed in 74 s (0 from earlier runs). Transcripts: selftest-out/<id>.txt
+simulator model calls: 38 (customer and judge on haiku, agent on haiku)

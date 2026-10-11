@@ -34,16 +34,26 @@ def check_unique_customers(cases):
         seen[customer] = case['id']
 
 
+def check_native_expectations(cases):
+    """Native close reasons do not identify a local workflow terminal function."""
+    for case in cases:
+        if (case.get('expected') or {}).get('end_reason') is not None:
+            raise ValueError(
+                f"Case {case['id']} has unsupported expected.end_reason: this names a local "
+                "workflow terminal function, while Freya native endedReason is a platform "
+                "close reason and does not expose that exact function name. Verify the "
+                "terminal with local selftest, or use semantic conversation exit checks "
+                "for this native smoke run.")
+
+
 def success_criteria(case):
+    check_native_expectations([case])
     checks = list(case['checks'])
     expected = case.get('expected') or {}
     if expected.get('outcome'):
         checks.append("The call actually ends with the semantic exit '" + expected['outcome'] + "'"
                       + (" (reason '" + expected['reason'] + "')" if expected.get('reason') else "")
                       + "; the actual workflow exit and the conversation must both fit this outcome.")
-    if expected.get('end_reason'):
-        checks.append("The actual workflow terminal function name is exactly '" + expected['end_reason']
-                      + "'; a spoken promise to end or transfer does not satisfy this condition.")
     return 'All of these are true:\n- ' + '\n- '.join(checks)
 
 
@@ -67,6 +77,7 @@ def main():
     if {c['source_id'] for c in cases} != selected:
         raise ValueError('Some selected case ids do not exist in the supplied test set')
     check_unique_customers(cases)
+    check_native_expectations(cases)
     specs = [{'name': c['id'], 'prompt': selftest.persona(c),
               'successCriteria': success_criteria(c),
               'tags': ['hackathon', 'builder-calibration']} for c in cases]
@@ -93,15 +104,6 @@ def main():
             run = runs.get(ids[c['id']], {})
             if run.get('outcome') != 'pass': bad.append('Freya conversation: ' + str(run.get('reason') or 'no verdict'))
             call = freya.get_call(run['callId']) if run.get('callId') else None
-            expected_end = c.get('expected', {}).get('end_reason')
-            if expected_end:
-                # docs/workflow-format.md: the call's endedReason is the terminal function.name.
-                # Compare exact values; do not invent a semantic mapping from platform labels.
-                actual_end = call.get('endedReason') if isinstance(call, dict) else None
-                if actual_end is None:
-                    bad.append('Cannot verify expected.end_reason: native call metadata has no endedReason')
-                elif actual_end != expected_end:
-                    bad.append(f"Native call endedReason {actual_end!r}, expected {expected_end!r}")
             row = {'id': c['source_id'], 'pass': not bad, 'failed': bad,
                    'tools': [x['tool'] for x in led.get('calls', [])], 'ledger': led, 'freya_run': run}
             if call is not None: row['call'] = call

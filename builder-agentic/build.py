@@ -216,7 +216,12 @@ FIX_PROMPT = ("You are fixing a phone agent that fails some test customers. Read
               "(regenerate) or in the JSON. Keep everything that works; do not rewrite the agent. Prefer routes and code over prompt text. "
               "If a transcript contains an external grader and native call evidence, use the actual failure and latest raw sources to identify "
               "the general cause: preserve required date precision and required choice/options wording for all customers; never hardcode "
-              "a test id, customer id, fixture date or preferred option to pass that example. Run "
+              "a test id, customer id, fixture date or preferred option to pass that example. Audit every early-answer shortcut as a "
+              "separate graph path: a stored choice must still pass through every mandatory availability/options announcement, "
+              "preview and confirmation required by the brief. Track completion of these steps independently from whether an answer "
+              "was extracted. Count every retry-eligible invalid customer reply according to the brief, even when extraction returns "
+              "none; a transition that only fires on a successfully extracted answer cannot enforce that limit. Implement counters "
+              "and limit routes in code; exempt repeats or other cases only when the source says they are exempt. Run "
               "`python3 tools/contract.py out/agent.workflow.json tools/{api}` and fix every ERROR. You have {minutes} minutes. Finish with: DONE.")
 
 TESTS_REPAIR_PROMPT = (
@@ -270,6 +275,10 @@ class Run:
         self.case_dir = None
         if pathlib.Path(a.brief).is_dir():                     # final format: <case folder> <mock url>
             self.case_dir = pathlib.Path(a.brief).resolve()
+            # The positional mock URL is the authority for both service calls and the practice harness.
+            # Synchronise the live environment and the subprocess environment snapshot made by base.
+            os.environ["MOCK_BANK_URL"] = a.api.rstrip("/")
+            base.ENV["MOCK_BANK_URL"] = a.api.rstrip("/")
             cm, ap_, found = load_case(self.case_dir, a.api, HERE / "work" / a.slot / "case")
             self.brief, self.api = str(cm), str(ap_)
             global CASE_DIR; CASE_DIR = self.case_dir

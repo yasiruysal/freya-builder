@@ -81,3 +81,15 @@ workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_em
 created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
 done: final-b, kept builder-agentic/work/final-b/fix-2/out/agent.workflow.json
 trace: traces/final-b_20261011-221207.agentic.log
+case folder FreyaBank-Final: service contract NOT FOUND (empty paths); mock https://freya-final-mock.yasir-freya.workers.dev
+resume: restored reconciled contract (8 paths) from tools/service-contract.openapi.json
+external feedback (external grader): 0/2 passed; failed ['S-pieces-T-02', 'T-03']; source /Users/yasir/Documents/Claude/Freya-agentic/results/final-b-source-review.json; archived external-feedback/77ab14b42b0b36c4.json; sha256 77ab14b42b0b; fresh feedback pending
+session fix-3 (claude-opus-5-5): fix round 3: fix the largest cluster of 2 failing tests; builder result: 12 turns, 55 s, cost $0.75 | model calls: 21
+fix round 3: consumed fresh external feedback 77ab14b42b0b (fix-round limit unchanged)
+fix round 3: fixed ['T-03', 'S-pieces-T-02'] of ['T-03', 'S-pieces-T-02']; regressions [] -> kept
+fix: stop (failed 0, round 3, 13.7 min left)
+contract: 0 errors, 0 warnings
+workflow: 42 nodes, tools used: cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; written to builder-agentic/out/final-b.workflow.json
+created on Freya: workflow_id a2634018-e103-4173-8869-24eec97ad82a, agent_id f0104eca-5dcf-45a3-aa3f-fe4c0a0ebdb3, 42 nodes, tools cards_balance, cards_list, code_exec, contact_email_get, statement_pdf_send, statement_week_change, statement_week_decide, statement_week_get; exported to submission/final-b.workflow.json
+done: final-b, kept builder-agentic/work/final-b/fix-3/out/agent.workflow.json
+trace: traces/final-b_20261011-221839.agentic.log
