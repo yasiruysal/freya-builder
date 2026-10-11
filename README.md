@@ -2,7 +2,7 @@
 
 Run (case folder + the URL of our mock of the bank's services):
 
-    python3 builder-agentic/build.py {case_folder} {mock_url} --runner cli --minutes 60
+    python3 builder-agentic/build.py {case_folder} {mock_url} --runner cli --minutes 70
 
 - `builder-agentic/build.py`: the control loop (case adapter, reconcile, three Opus candidates with different skills,
   a test writer, simulator-based selection, a fix round with a regression veto, lint, contract check, save + export).
